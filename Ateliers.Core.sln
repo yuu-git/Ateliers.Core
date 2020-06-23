@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ateliers.Core", "Ateliers.C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Tests", ".Tests", "{1B1BC98C-FD9C-4EEE-A550-E1F47EBCE898}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ateliers.Core.Tests", "Ateliers.Core.Tests\Ateliers.Core.Tests.csproj", "{436C2C79-C856-449E-8116-0269AE66A736}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ateliers.Core.UnitTest", "Ateliers.Core.UnitTest\Ateliers.Core.UnitTest.csproj", "{67569AEE-9797-44D6-842E-5405FB812255}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +19,16 @@ Global
 		{205014E1-CBDD-4354-A444-1DFD9C59E055}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{205014E1-CBDD-4354-A444-1DFD9C59E055}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{205014E1-CBDD-4354-A444-1DFD9C59E055}.Release|Any CPU.Build.0 = Release|Any CPU
-		{436C2C79-C856-449E-8116-0269AE66A736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{436C2C79-C856-449E-8116-0269AE66A736}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{436C2C79-C856-449E-8116-0269AE66A736}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{436C2C79-C856-449E-8116-0269AE66A736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67569AEE-9797-44D6-842E-5405FB812255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67569AEE-9797-44D6-842E-5405FB812255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67569AEE-9797-44D6-842E-5405FB812255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67569AEE-9797-44D6-842E-5405FB812255}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{436C2C79-C856-449E-8116-0269AE66A736} = {1B1BC98C-FD9C-4EEE-A550-E1F47EBCE898}
+		{67569AEE-9797-44D6-842E-5405FB812255} = {1B1BC98C-FD9C-4EEE-A550-E1F47EBCE898}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E1D0137-BCB1-4081-A75C-18AC5E50AB92}

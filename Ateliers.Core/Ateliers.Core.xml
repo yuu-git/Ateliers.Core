@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ateliers.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Ateliers.DateTimeExtensions">
+            <summary>
+            日時型(<see cref="T:System.DateTime"/>) 拡張メソッド
+            </summary>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetNextDay(System.DateTime)">
+            <summary>
+            翌日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 翌日の日付を返します。時刻は00:00に設定します。 日付が <see cref="F:System.DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetNextMonday(System.DateTime)">
+            <summary>
+            次週の月曜日を取得します。引数の日付が既に月曜日の場合、翌週の月曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 次週の月曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetNextTuesday(System.DateTime)">
+            <summary>
+            次週の火曜日を取得します。引数の日付が既に火曜日の場合、翌週の火曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 次週の火曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetNextWednesday(System.DateTime)">
+            <summary>
+            次週の水曜日を取得します。引数の日付が既に水曜日の場合、翌週の水曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 次週の水曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetNextThursday(System.DateTime)">
+            <summary>
+            次週の木曜日を取得します。引数の日付が既に木曜日の場合、翌週の木曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 次週の木曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetNextFriday(System.DateTime)">
+            <summary>
+            次週の金曜日を取得します。引数の日付が既に金曜日の場合、翌週の金曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 次週の金曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetNextSaturday(System.DateTime)">
+            <summary>
+            次週の土曜日を取得します。引数の日付が既に土曜日の場合、翌週の土曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 次週の土曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetNextSunday(System.DateTime)">
+            <summary>
+            次週の日曜日を取得します。引数の日付が既に日曜日の場合、翌週の日曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 次週の日曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetPreviousDay(System.DateTime)">
+            <summary>
+            前日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 前日の日付を返します。 日付が <see cref="F:System.DateTime.MinValue"/> の場合、そのまま返します。時刻は00:00に設定します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetPreviousMonday(System.DateTime)">
+            <summary>
+            前週の月曜日を取得します。引数の日付が既に月曜日の場合、翌週の月曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 前週の月曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetPreviousTuesday(System.DateTime)">
+            <summary>
+            前週の火曜日を取得します。引数の日付が既に火曜日の場合、翌週の火曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 前週の火曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetPreviousWednesday(System.DateTime)">
+            <summary>
+            前週の水曜日を取得します。引数の日付が既に水曜日の場合、翌週の水曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 前週の水曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetPreviousThursday(System.DateTime)">
+            <summary>
+            前週の木曜日を取得します。引数の日付が既に木曜日の場合、翌週の木曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 前週の木曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetPreviousFriday(System.DateTime)">
+            <summary>
+            前週の金曜日を取得します。引数の日付が既に金曜日の場合、翌週の金曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 前週の金曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetPreviousSaturday(System.DateTime)">
+            <summary>
+            前週の土曜日を取得します。引数の日付が既に土曜日の場合、翌週の土曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 前週の土曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetPreviousSunday(System.DateTime)">
+            <summary>
+            前週の日曜日を取得します。引数の日付が既に日曜日の場合、翌週の日曜日を取得します。
+            </summary>
+            <param name="self"> 判定する基準となる日時（自身） </param>
+            <returns> 前週の日曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="F:System.DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetNextWeekOfDate(System.DateTime,System.DayOfWeek)">
+            <summary>
+            翌週の指定された曜日に該当する日付を取得します。
+            </summary>
+            <param name="baseDate"> 基準となる日付を指定します。 </param>
+            <param name="targetDayOfWeek"> 取得する対象の曜日を指定します。 </param>
+            <returns> 結果の日付を返します。 時刻は00:00に設定します。 </returns>
+        </member>
+        <member name="M:Ateliers.DateTimeExtensions.GetPreviousWeekOfDate(System.DateTime,System.DayOfWeek)">
+            <summary>
+            前週の指定された曜日に該当する日付を取得します。
+            </summary>
+            <param name="baseDate"> 基準となる日付を指定します。 </param>
+            <param name="targetDayOfWeek"> 取得する対象の曜日を指定します。 </param>
+            <returns> 結果の日付を返します。 時刻は00:00に設定します。 </returns>
+        </member>
+    </members>
+</doc>

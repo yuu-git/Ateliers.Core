@@ -1,15 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Ateliers</RootNamespace>
-    <Company>ATELIE YUU</Company>
-    <Authors>Yuu.Konno</Authors>
+    <Company>ATELIER YUU</Company>
+    <Authors>Yuu Konno</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage>ja</NeutralLanguage>
     <RepositoryType>GitHub (Public)</RepositoryType>
-    <Copyright>Copyright 2020, Yuu.Konno</Copyright>
+    <Copyright>Copyright 2020, Yuu Konno</Copyright>
     <PackageLicenseExpression>GPL</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Projects\Ateliers\GitHub\CoreLib\Ateliers.Core\Ateliers.Core\Ateliers.Core.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
