@@ -4,6 +4,29 @@
         <name>Ateliers.Core</name>
     </assembly>
     <members>
+        <member name="T:Ateliers.DecryptSecurityException">
+            <summary>
+            復号セキュリティ例外
+            </summary>
+        </member>
+        <member name="M:Ateliers.DecryptSecurityException.#ctor">
+            <summary>
+            復号セキュリティ例外 / コンストラクタ
+            </summary>
+        </member>
+        <member name="M:Ateliers.DecryptSecurityException.#ctor(System.String)">
+            <summary>
+             復号セキュリティ例外 / コンストラクタ
+            </summary>
+            <param name="message"> 例外メッセージを指定します。 </param>
+        </member>
+        <member name="M:Ateliers.DecryptSecurityException.#ctor(System.String,System.Exception)">
+            <summary>
+            復号セキュリティ例外 / コンストラクタ
+            </summary>
+            <param name="message"> 例外メッセージを指定します。 </param>
+            <param name="innerException"> 内部例外を指定します。 </param>
+        </member>
         <member name="T:Ateliers.DateTimeExtensions">
             <summary>
             日時型(<see cref="T:System.DateTime"/>) 拡張メソッド
@@ -136,6 +159,46 @@
             <param name="baseDate"> 基準となる日付を指定します。 </param>
             <param name="targetDayOfWeek"> 取得する対象の曜日を指定します。 </param>
             <returns> 結果の日付を返します。 時刻は00:00に設定します。 </returns>
+        </member>
+        <member name="T:Ateliers.EncryptService">
+            <summary>
+            暗号化サービス
+            </summary>
+        </member>
+        <member name="T:Ateliers.EncryptService.RFC2898">
+            <summary>
+            RFC2898による暗号化と複合化
+            </summary>
+        </member>
+        <member name="M:Ateliers.EncryptService.RFC2898.EncryptString(System.String,System.String)">
+            <summary>
+            ＜RFC2898＞ 文字列を暗号化して返却します。
+            </summary>
+            <param name="sourceString"> 暗号化する文字列を指定します。(必須) </param>
+            <param name="password"> 暗号化に使用するパスワードを指定します。(必須) </param>
+            <returns> 暗号化された文字列を返します。 </returns>
+            <exception cref="T:System.ArgumentNullException"> 暗号化に必要な文字列またはパスワードが未指定の場合に発生します。 </exception>
+        </member>
+        <member name="M:Ateliers.EncryptService.RFC2898.DecryptString(System.String,System.String)">
+            <summary>
+            ＜RFC2898＞ ロジックで暗号化された文字列を復号して返却します。
+            </summary>
+            <param name="sourceString"> 暗号化された文字列を指定します。(必須) </param>
+            <param name="password"> 複合に使用するパスワードを指定します。(必須) </param>
+            <returns> 復号化された文字列を返します。複合化に失敗した場合は例外エラーを返します。 </returns>
+            <exception cref="T:System.ArgumentNullException"> 複合化に必要な文字列またはパスワードが未指定の場合に発生します。 </exception>
+            <exception cref="T:Ateliers.DecryptSecurityException"> 文字列の復号に失敗した場合に発生します。 </exception>
+        </member>
+        <member name="M:Ateliers.EncryptService.RFC2898.GenerateKeyFromPassword(System.String,System.Int32,System.Int32,System.Int32,System.String)">
+            <summary>
+            ＜RFC2898＞ パスワードから共有キーと初期化ベクタを生成します。
+            </summary>
+            <param name="password"> 基になるパスワードを指定します。 </param>
+            <param name="keySize"> 共有キーのサイズ（ビット）を指定します。 </param>
+            <param name="blockSize"> 初期化ベクタのサイズ（ビット）を指定します。 </param>
+            <param name="iterationCount"> 反復処理をする回数を指定します。(デフォルト: 1000 回) </param>
+            <param name="salt"> セキュリティ用にランダムバイト化する文字列を指定します。 </param>
+            <returns> 作成された共有キー(Key)と初期化ベクタ(Iv)を返します。 </returns>
         </member>
     </members>
 </doc>

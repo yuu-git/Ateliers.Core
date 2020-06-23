@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ateliers.Core", "Ateliers.C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Tests", ".Tests", "{1B1BC98C-FD9C-4EEE-A550-E1F47EBCE898}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ateliers.Core.UnitTest", "Ateliers.Core.UnitTest\Ateliers.Core.UnitTest.csproj", "{67569AEE-9797-44D6-842E-5405FB812255}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ateliers.Core.UnitTest", "Ateliers.Core.UnitTest\Ateliers.Core.UnitTest.csproj", "{67569AEE-9797-44D6-842E-5405FB812255}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
