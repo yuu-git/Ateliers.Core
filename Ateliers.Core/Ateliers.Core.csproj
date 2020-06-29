@@ -16,4 +16,14 @@
     <DocumentationFile>C:\Projects\Ateliers\GitHub\CoreLib\Ateliers.Core\Ateliers.Core\Ateliers.Core.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Extensions\IEnumerableExtensions.cs" />
+    <Compile Remove="Services\JsonConvertService.cs" />
+    <Compile Remove="Services\JsonFileService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
 </Project>

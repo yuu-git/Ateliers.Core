@@ -160,6 +160,54 @@
             <param name="targetDayOfWeek"> 取得する対象の曜日を指定します。 </param>
             <returns> 結果の日付を返します。 時刻は00:00に設定します。 </returns>
         </member>
+        <member name="T:Ateliers.StringExtensions">
+            <summary>
+            文字列型(<see cref="T:System.String"/>) 拡張メソッド
+            </summary>
+        </member>
+        <member name="P:Ateliers.StringExtensions.ExceptionMessage100100">
+            <summary>
+            <see cref="M:Ateliers.StringExtensions.SubstringLeft(System.String,System.String)"/> の検索する文字列がNULL指定された場合の例外メッセージを取得します。
+            </summary>
+        </member>
+        <member name="P:Ateliers.StringExtensions.ExceptionMessage100101">
+            <summary>
+            <see cref="M:Ateliers.StringExtensions.SubstringLeft(System.String,System.String)"/> の検索する文字列が <see cref="F:System.String.Empty"/> に指定された場合の例外メッセージを取得します。
+            </summary>
+        </member>
+        <member name="M:Ateliers.StringExtensions.SubstringLeft(System.String,System.String)">
+            <summary>
+            指定された文字列を左側から検索し、最初に一致する対象文字列より左側を取り除いた文字列を返却します。
+            </summary>
+            <param name="self"> 取り除きの対象となる文字列(自身) </param>
+            <param name="keyStr"> 検索する(取り除く)文字列を指定します。 </param>
+            <returns> 対象文字列より左側を切り取った文字列を返します。対象が見つからない場合は、そのままの文字列を返します。 </returns>
+            <exception cref="T:System.ArgumentNullException"> 取り除く文字列を Null にすることはできません。 </exception>
+            <exception cref="T:System.ArgumentException"> 取り除く文字列を <see cref="F:System.String.Empty"/> に指定することはできません。 </exception>
+            <example>
+            構文: "AAABBBCCC".SubstringLeft("A")            結果: "AABBBCCC"
+            構文: "AAABBBCCC".SubstringLeft("BB")           結果: "BCCC"
+            構文: "AAABBBCCC".SubstringLeft("BC")           結果: "CC"
+            構文: "TESTRESULT_xxxx".SubstringLeft("_")      結果: "xxxx"
+            構文: "TESTRESULT_xxxx_yyy".SubstringLeft("_")  結果: "xxxx_yyy"
+            構文: "2020/06/29".SubstringLeft("/")           結果: "06/29"
+            構文: "2020/06/29".SubstringLeft("A")           結果: "2020/06/29"
+            </example>
+        </member>
+        <member name="M:Ateliers.StringExtensions.IsNullOrWhiteSpace(System.String)">
+            <summary>
+            文字列がNullまたは空白("", " ")であるかを確認し、結果を返却します。
+            </summary>
+            <param name="src"> 確認する文字列(自身) </param>
+            <returns> Null または 空白 である場合は true, そうでない場合は false を返します。 </returns>
+        </member>
+        <member name="M:Ateliers.StringExtensions.Sanitize(System.String)">
+            <summary>
+            文字列が Null の場合、空白に置き換えて返却します。
+            </summary>
+            <param name="src"> 確認する文字列(自身) </param>
+            <returns> 対象が Null の場合は <see cref="F:System.String.Empty"/>, そうでない場合はそのままの文字列を返します。 </returns>
+        </member>
         <member name="T:Ateliers.EncryptService">
             <summary>
             暗号化サービス
