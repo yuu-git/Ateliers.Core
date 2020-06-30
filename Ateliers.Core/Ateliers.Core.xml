@@ -160,6 +160,67 @@
             <param name="targetDayOfWeek"> 取得する対象の曜日を指定します。 </param>
             <returns> 結果の日付を返します。 時刻は00:00に設定します。 </returns>
         </member>
+        <member name="T:Ateliers.IEnumerableExtensions">
+            <summary>
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> 拡張メソッド
+            </summary>
+        </member>
+        <member name="P:Ateliers.IEnumerableExtensions.ExceptionMessage100100">
+            <summary>
+            <see cref="M:Ateliers.IEnumerableExtensions.IsEmpty``1(System.Collections.Generic.IEnumerable{``0})"/> の検索する文字列がNULL指定された場合の例外メッセージを取得します。
+            </summary>
+        </member>
+        <member name="P:Ateliers.IEnumerableExtensions.ExceptionMessage100200">
+            <summary>
+            <see cref="M:Ateliers.IEnumerableExtensions.ToAllUpper(System.Collections.Generic.IEnumerable{System.String})"/> の確認するコレクションがNullに指定された場合の例外メッセージを取得します。
+            </summary>
+        </member>
+        <member name="P:Ateliers.IEnumerableExtensions.ExceptionMessage100300">
+            <summary>
+            <see cref="M:Ateliers.IEnumerableExtensions.ToAllLower(System.Collections.Generic.IEnumerable{System.String})"/> の確認するコレクションがNullに指定された場合の例外メッセージを取得します。
+            </summary>
+        </member>
+        <member name="M:Ateliers.IEnumerableExtensions.IsEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            コレクションがカラであるかを確認します。
+            </summary>
+            <typeparam name="T"> 確認するコレクションの型を指定します。 </typeparam>
+            <param name="self"> 確認するコレクション（自身） </param>
+            <returns> コレクションがカラであった場合は true, そうでなかった場合は false を返します。 </returns>
+            <exception cref="T:System.NullReferenceException"> 確認するコレクションのインスタンスは生成されている必要があります。 </exception>
+        </member>
+        <member name="M:Ateliers.IEnumerableExtensions.IsDefaultOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            コレクションが既定値またはカラであるかを確認します。
+            </summary>
+            <typeparam name="T"> 確認するコレクションの型を指定します。 </typeparam>
+            <param name="self"> 確認するコレクション（自身） </param>
+            <returns> コレクションが既定値またはカラであった場合は true, そうでなかった場合は false を返します。 </returns>
+        </member>
+        <member name="M:Ateliers.IEnumerableExtensions.Sanitize``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            コレクションが規定値の場合、新しいコレクションを生成して返却します。
+            </summary>
+            <typeparam name="T"> コレクションに格納する型を指定します。 </typeparam>
+            <param name="self"> 確認するコレクションを指定します。(自身) </param>
+            <returns> 規定値であった場合は新しいコレクション、それ以外の場合は引数のコレクションをそのまま返します。 </returns>
+        </member>
+        <member name="M:Ateliers.IEnumerableExtensions.ToAllUpper(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            コレクション内の文字列を全て大文字に変換します。
+            </summary>
+            <param name="self"> 対象の文字列コレクション(自身) </param>
+            <returns> 文字列を大文字に変換した新しいリストを返します。 </returns>
+            <exception cref="T:System.NullReferenceException"> 返還対象を格納しているリストを Null にすることはできません。 </exception>
+        </member>
+        <member name="M:Ateliers.IEnumerableExtensions.ToAllLower(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            コレクション内の文字列を全て小文字に変換します。
+            </summary>
+            <param name="self"> 対象の文字列コレクション(自身) </param>
+            <returns> 文字列を小文字に変換した新しいリストを返します。 </returns>
+            <exception cref="T:System.NullReferenceException"> 返還対象を格納しているリストを Null にすることはできません。 </exception>
+        </member>
         <member name="T:Ateliers.StringExtensions">
             <summary>
             文字列型(<see cref="T:System.String"/>) 拡張メソッド

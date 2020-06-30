@@ -17,7 +17,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Extensions\IEnumerableExtensions.cs" />
     <Compile Remove="Services\JsonConvertService.cs" />
     <Compile Remove="Services\JsonFileService.cs" />
   </ItemGroup>
