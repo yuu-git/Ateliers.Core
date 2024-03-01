@@ -37,7 +37,7 @@ namespace Ateliers.UnitTest.Services
                     EncryptService.RFC2898.EncryptString(testStr, "testPassword");
                 });
 
-                ex.Message.Contains("暗号化する文字列は必須です。");
+                ex.Message.Contains(EncryptService.MSG_ERR_010_0010);
             }
         }
 
@@ -51,7 +51,7 @@ namespace Ateliers.UnitTest.Services
                     EncryptService.RFC2898.EncryptString("TestStr", testPassword);
                 });
 
-                ex.Message.Contains("暗号化に使用するパスワードは必須です。");
+                ex.Message.Contains(EncryptService.MSG_ERR_010_0020);
             }
         }
 
@@ -77,7 +77,7 @@ namespace Ateliers.UnitTest.Services
                     EncryptService.RFC2898.DecryptString(testStr, "testPassword");
                 });
 
-                ex.Message.Contains("複合化する文字列は必須です。");
+                ex.Message.Contains(EncryptService.MSG_ERR_020_0010);
             }
         }
 
@@ -91,7 +91,7 @@ namespace Ateliers.UnitTest.Services
                     EncryptService.RFC2898.DecryptString("TestStr", testPassword);
                 });
 
-                ex.Message.Contains("複合化に使用するパスワードは必須です。");
+                ex.Message.Contains(EncryptService.MSG_ERR_020_0020);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Ateliers.UnitTest.Services
                 EncryptService.RFC2898.DecryptString("uE41N9yGgoWWQSc2nvkuwA==", "aaa");
             });
 
-            ex.Message.Contains("文字列の復号に失敗しました。");
+            ex.Message.Contains(EncryptService.MSG_ERR_030_0010);
             
             // 内部例外の型も確認
             ex.InnerException.GetType().Is(typeof(CryptographicException));

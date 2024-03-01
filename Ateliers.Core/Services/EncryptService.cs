@@ -6,14 +6,32 @@ using System.Text;
 namespace Ateliers
 {
     /// <summary>
-    /// 暗号化サービス
+    /// STA - 暗号化サービス
     /// </summary>
+    /// <remarks>
+    /// <para> 概要: 文字列の暗号化と復号化を実行する。 </para>
+    /// </remarks>
     public static class EncryptService
     {
         /*--- Property/Field Definitions ----------------------------------------------------------------------------------------------------------*/
 
+        #region --- エラーメッセージ ---
+
+        //Todo: EncryptService: エラーメッセージの多言語対応
+        /// <summary> 異常終了メッセージ: 暗号化する文字列は必須です。 </summary>
+        public static string MSG_ERR_010_0010 => "暗号化する文字列は必須です。";
+        /// <summary> 異常終了メッセージ: 暗号化に使用するパスワードは必須です。 </summary>
+        public static string MSG_ERR_010_0020 => "暗号化に使用するパスワードは必須です。";
+        /// <summary> 異常終了メッセージ: 復号化する文字列は必須です。 </summary>
+        public static string MSG_ERR_020_0010 => "復号化する文字列は必須です。";
+        /// <summary> 異常終了メッセージ: 復号化に使用するパスワードは必須です。 </summary>
+        public static string MSG_ERR_020_0020 => "復号化に使用するパスワードは必須です。";
+        /// <summary> 異常終了メッセージ: 文字列の復号に失敗しました。 </summary>
+        public static string MSG_ERR_030_0010 => "文字列の復号に失敗しました。";
+        #endregion
+
         /// <summary>
-        /// RFC2898による暗号化と複合化
+        /// RFC2898による暗号化と復号化
         /// </summary>
         public static class RFC2898
         {
@@ -30,10 +48,10 @@ namespace Ateliers
             public static string EncryptString(string sourceString, string password)
             {
                 if (sourceString == default || string.IsNullOrWhiteSpace(sourceString))
-                    throw new ArgumentNullException("暗号化する文字列は必須です。");
+                    throw new ArgumentNullException(MSG_ERR_010_0010);
 
                 if (password == default || string.IsNullOrWhiteSpace(password))
-                    throw new ArgumentNullException("暗号化に使用するパスワードは必須です。");
+                    throw new ArgumentNullException(MSG_ERR_010_0020);
 
                 // RijndaelManagedオブジェクトを作成
                 var rijndael = new RijndaelManaged();
@@ -66,10 +84,10 @@ namespace Ateliers
             public static string DecryptString(string sourceString, string password)
             {
                 if (sourceString == default || string.IsNullOrWhiteSpace(sourceString))
-                    throw new ArgumentNullException("複合化する文字列は必須です。");
+                    throw new ArgumentNullException(MSG_ERR_020_0010);
 
                 if (password == default || string.IsNullOrWhiteSpace(password))
-                    throw new ArgumentNullException("複合化に使用するパスワードは必須です。");
+                    throw new ArgumentNullException(MSG_ERR_020_0020);
 
                 // RijndaelManagedオブジェクトを作成
                 var rijndael = new RijndaelManaged();
@@ -95,7 +113,7 @@ namespace Ateliers
                 }
                 catch (CryptographicException e)
                 {
-                    throw new DecryptSecurityException($"文字列の復号に失敗しました。", e);
+                    throw new DecryptSecurityException(MSG_ERR_030_0010, e);
                 }
             }
 
