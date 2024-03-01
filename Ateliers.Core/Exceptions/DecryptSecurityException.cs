@@ -7,6 +7,9 @@ namespace Ateliers
     /// <summary>
     /// 復号セキュリティ例外
     /// </summary>
+    /// <remarks>
+    /// <para> 概要: 暗号化されている文字列を <see cref="EncryptService"/> などでの復号処理に失敗した際に発行される例外。 </para>
+    /// </remarks>
     public class DecryptSecurityException : Exception
     {
         /*--- * structers -------------------------------------------------------------------------------------------------------------------------*/
