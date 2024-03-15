@@ -47,10 +47,10 @@ namespace Ateliers
             /// <exception cref="ArgumentNullException"> 暗号化に必要な文字列またはパスワードが未指定の場合に発生します。 </exception>
             public static string EncryptString(string sourceString, string password)
             {
-                if (sourceString == default || string.IsNullOrWhiteSpace(sourceString))
+                if (string.IsNullOrWhiteSpace(sourceString))
                     throw new ArgumentNullException(MSG_ERR_010_0010);
 
-                if (password == default || string.IsNullOrWhiteSpace(password))
+                if (string.IsNullOrWhiteSpace(password))
                     throw new ArgumentNullException(MSG_ERR_010_0020);
 
                 // RijndaelManagedオブジェクトを作成
@@ -83,10 +83,10 @@ namespace Ateliers
             /// <exception cref="DecryptSecurityException"> 文字列の復号に失敗した場合に発生します。 </exception>
             public static string DecryptString(string sourceString, string password)
             {
-                if (sourceString == default || string.IsNullOrWhiteSpace(sourceString))
+                if (string.IsNullOrWhiteSpace(sourceString))
                     throw new ArgumentNullException(MSG_ERR_020_0010);
 
-                if (password == default || string.IsNullOrWhiteSpace(password))
+                if (string.IsNullOrWhiteSpace(password))
                     throw new ArgumentNullException(MSG_ERR_020_0020);
 
                 // RijndaelManagedオブジェクトを作成
@@ -127,7 +127,7 @@ namespace Ateliers
             /// <param name="blockSize"> 初期化ベクタのサイズ（ビット）を指定します。 </param>
             /// <param name="iterationCount"> 反復処理をする回数を指定します。(デフォルト: 1000 回) </param>
             /// <param name="salt"> セキュリティ用にランダムバイト化する文字列を指定します。 </param>
-            /// <returns> 作成された共有キー(Key)と初期化ベクタ(Iv)を返します。 </returns>
+            /// <returns>作成された共有キー(Key)と初期化ベクタ(Iv)を返します。 </returns>
             internal static Tuple<byte[], byte[]> GenerateKeyFromPassword(string password, int keySize, int blockSize, int iterationCount = 1000, string salt = "ATELIERS")
             {
                 // Rfc2898DeriveBytesオブジェクトを作成する

@@ -2,24 +2,30 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Ateliers</RootNamespace>
+    <RootNamespace>Ateliers.Core</RootNamespace>
     <Company>ateliers.dev</Company>
-    <Authors>yuu.konno</Authors>
+    <Authors>Yuu.Konno</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <NeutralLanguage>ja</NeutralLanguage>
+    <NeutralLanguage>ja-JP</NeutralLanguage>
     <RepositoryType>GitHub (Public)</RepositoryType>
-    <Copyright>Copyright 2020, Yuu Konno</Copyright>
-    <PackageLicenseExpression>GPL</PackageLicenseExpression>
+    <Copyright>Copyright 2024, Yuu.Konno</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/yuu-git/Ateliers.Core</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="5.2.8" />
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
+  </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="NLog" Version="5.2.8" />
+    <Folder Include="Aggregates\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
+
 
 </Project>

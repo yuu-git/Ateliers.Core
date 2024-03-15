@@ -2,20 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
-
-    <Authors>Yuu Konno</Authors>
-
-    <Company>ATELIER YUU</Company>
-
-    <Copyright>Copyright 2020, Yuu Konno</Copyright>
-
-    <PackageLicenseExpression>GPL</PackageLicenseExpression>
-
+    <IsTestProject>true</IsTestProject>
+    <Authors>Yuu.Konno</Authors>
+    <Company>ateliers.dev</Company>
+    <Copyright>Copyright 2024, Yuu.Konno</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/yuu-git/Ateliers.Core</RepositoryUrl>
     <RepositoryType>GitHub (Public)</RepositoryType>
-
-    <RootNamespace>Ateliers.UnitTest</RootNamespace>
+    <NeutralLanguage>ja-JP</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ateliers.Core\Ateliers.Core.csproj" />
+    <ProjectReference Include="..\Ateliers.Core.DomainLayer\Ateliers.Core.DomainLayer.csproj" />
   </ItemGroup>
 
 </Project>

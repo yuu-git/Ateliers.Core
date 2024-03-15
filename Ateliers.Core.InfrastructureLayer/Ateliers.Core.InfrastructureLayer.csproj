@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Ateliers.Core</RootNamespace>
+    <Company>ateliers.dev</Company>
+    <Authors>Yuu.Konno</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NeutralLanguage>ja-JP</NeutralLanguage>
+    <RepositoryType>GitHub (Public)</RepositoryType>
+    <Copyright>Copyright 2024, Yuu.Konno</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/yuu-git/Ateliers.Core</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ateliers.Core.DomainLayer\Ateliers.Core.DomainLayer.csproj" />
+  </ItemGroup>
+
+</Project>
