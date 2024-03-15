@@ -6,14 +6,32 @@ using System.Text;
 namespace Ateliers
 {
     /// <summary>
-    /// 暗号化サービス
+    /// STA - 暗号化サービス
     /// </summary>
+    /// <remarks>
+    /// <para> 概要: 文字列の暗号化と復号化を実行する。 </para>
+    /// </remarks>
     public static class EncryptService
     {
         /*--- Property/Field Definitions ----------------------------------------------------------------------------------------------------------*/
 
+        #region --- エラーメッセージ ---
+
+        //Todo: EncryptService: エラーメッセージの多言語対応
+        /// <summary> 異常終了メッセージ: 暗号化する文字列は必須です。 </summary>
+        public static string MSG_ERR_010_0010 => "暗号化する文字列は必須です。";
+        /// <summary> 異常終了メッセージ: 暗号化に使用するパスワードは必須です。 </summary>
+        public static string MSG_ERR_010_0020 => "暗号化に使用するパスワードは必須です。";
+        /// <summary> 異常終了メッセージ: 復号化する文字列は必須です。 </summary>
+        public static string MSG_ERR_020_0010 => "復号化する文字列は必須です。";
+        /// <summary> 異常終了メッセージ: 復号化に使用するパスワードは必須です。 </summary>
+        public static string MSG_ERR_020_0020 => "復号化に使用するパスワードは必須です。";
+        /// <summary> 異常終了メッセージ: 文字列の復号に失敗しました。 </summary>
+        public static string MSG_ERR_030_0010 => "文字列の復号に失敗しました。";
+        #endregion
+
         /// <summary>
-        /// RFC2898による暗号化と複合化
+        /// RFC2898による暗号化と復号化
         /// </summary>
         public static class RFC2898
         {
@@ -29,11 +47,11 @@ namespace Ateliers
             /// <exception cref="ArgumentNullException"> 暗号化に必要な文字列またはパスワードが未指定の場合に発生します。 </exception>
             public static string EncryptString(string sourceString, string password)
             {
-                if (sourceString == default || string.IsNullOrWhiteSpace(sourceString))
-                    throw new ArgumentNullException("暗号化する文字列は必須です。");
+                if (string.IsNullOrWhiteSpace(sourceString))
+                    throw new ArgumentNullException(MSG_ERR_010_0010);
 
-                if (password == default || string.IsNullOrWhiteSpace(password))
-                    throw new ArgumentNullException("暗号化に使用するパスワードは必須です。");
+                if (string.IsNullOrWhiteSpace(password))
+                    throw new ArgumentNullException(MSG_ERR_010_0020);
 
                 // RijndaelManagedオブジェクトを作成
                 var rijndael = new RijndaelManaged();
@@ -65,11 +83,11 @@ namespace Ateliers
             /// <exception cref="DecryptSecurityException"> 文字列の復号に失敗した場合に発生します。 </exception>
             public static string DecryptString(string sourceString, string password)
             {
-                if (sourceString == default || string.IsNullOrWhiteSpace(sourceString))
-                    throw new ArgumentNullException("複合化する文字列は必須です。");
+                if (string.IsNullOrWhiteSpace(sourceString))
+                    throw new ArgumentNullException(MSG_ERR_020_0010);
 
-                if (password == default || string.IsNullOrWhiteSpace(password))
-                    throw new ArgumentNullException("複合化に使用するパスワードは必須です。");
+                if (string.IsNullOrWhiteSpace(password))
+                    throw new ArgumentNullException(MSG_ERR_020_0020);
 
                 // RijndaelManagedオブジェクトを作成
                 var rijndael = new RijndaelManaged();
@@ -95,7 +113,7 @@ namespace Ateliers
                 }
                 catch (CryptographicException e)
                 {
-                    throw new DecryptSecurityException($"文字列の復号に失敗しました。", e);
+                    throw new DecryptSecurityException(MSG_ERR_030_0010, e);
                 }
             }
 
@@ -109,7 +127,7 @@ namespace Ateliers
             /// <param name="blockSize"> 初期化ベクタのサイズ（ビット）を指定します。 </param>
             /// <param name="iterationCount"> 反復処理をする回数を指定します。(デフォルト: 1000 回) </param>
             /// <param name="salt"> セキュリティ用にランダムバイト化する文字列を指定します。 </param>
-            /// <returns> 作成された共有キー(Key)と初期化ベクタ(Iv)を返します。 </returns>
+            /// <returns>作成された共有キー(Key)と初期化ベクタ(Iv)を返します。 </returns>
             internal static Tuple<byte[], byte[]> GenerateKeyFromPassword(string password, int keySize, int blockSize, int iterationCount = 1000, string salt = "ATELIERS")
             {
                 // Rfc2898DeriveBytesオブジェクトを作成する
