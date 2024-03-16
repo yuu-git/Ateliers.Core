@@ -24,6 +24,15 @@ namespace Ateliers.Core.ValueObjects
         /// <remarks>
         /// 抽象の実装内容: <see cref="ValueObject{T}.Equals(object?)"/> で実行される等価性比較メソッドを実装します。
         /// </remarks>
+        /// <example lang="C#">
+        /// 継承先の簡易実装例: 引数 (別の値オブジェクト) の null ケースの対応と、値オブジェクトの同値確認を実行して下さい。
+        /// <![CDATA[
+        /// protected override bool EqualsCore(T other)
+        /// {
+        ///     return other is null ? false : Value == other.Value && Name == other.Name;
+        /// }
+        /// ]]>
+        /// </example>
         protected abstract bool EqualsCore(T other);
 
         /// <inheritdoc/>
@@ -39,6 +48,15 @@ namespace Ateliers.Core.ValueObjects
         /// <remarks>
         /// 抽象の実装内容: <see cref="ValueObjectBase{T}.GetHashCode()"/> で実行されるハッシュコード生成メソッドを実装します。 
         /// </remarks>
+        /// <example lang="C#">
+        /// 継承先の簡易実装例: 値オブジェクトに応じたハッシュ値生成のメソッドを実行して下さい。
+        /// <![CDATA[
+        /// protected override int GetHashCodeCore()
+        /// {
+        ///     return Value.GetHashCode() ^ Name?.GetHashCode ?? 0;
+        /// }
+        /// ]]>
+        /// </example>
         protected abstract int GetHashCodeCore();
 
         /// <summary>

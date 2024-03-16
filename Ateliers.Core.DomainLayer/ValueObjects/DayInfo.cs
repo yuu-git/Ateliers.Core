@@ -129,20 +129,28 @@ namespace Ateliers.Core.ValueObjects
             return $"{Value}";
         }
 
+        /// <remarks>
+        /// 注釈: 値オブジェクトは通常、全てのプロパティ値が一致することで同一とみなされるが  <br/>
+        /// <see cref="DayInfo"/> はパフォーマンスや可読性を考慮し <see cref="Value"/> および <see cref="Flag"/> の一致のみで同一とする。 <br/>
+        /// （この <see cref="DayInfo"/> の継承先で違う等値確認条件が必要な場合は override して下さい）
+        /// </remarks>
         /// <inheritdoc/>
         protected override bool EqualsCore(DayInfo other)
         {
-            return Value == other.Value
-                && Name == other.Name
-                && FullName == other.FullName
-                && Flag == other.Flag
-                && JpnName == other.JpnName;
+            return other is null
+                ? false
+                : Value == other.Value && Flag == other.Flag;
         }
 
+        /// <remarks>
+        /// 注釈: 値オブジェクトは通常、全てのプロパティのハッシュ値を生成することが推奨されるが  <br/>
+        /// <see cref="DayInfo"/> はパフォーマンスや可読性を考慮し <see cref="Value"/> および <see cref="Flag"/> のハッシュ値のみ生成する。 <br/>
+        /// （この <see cref="DayInfo"/> の継承先で違うハッシュ値の生成方法が必要な場合は override して下さい）
+        /// </remarks>
         /// <inheritdoc/>
         protected override int GetHashCodeCore()
         {
-            return Value.GetHashCode() ^ Name.GetHashCode() ^ FullName.GetHashCode() ^ Flag.GetHashCode() ^ JpnName.GetHashCode();
+            return Value.GetHashCode() ^ Flag.GetHashCode();
         }
 
         /*--- Method: internal --------------------------------------------------------------------------------------------------------------------*/
