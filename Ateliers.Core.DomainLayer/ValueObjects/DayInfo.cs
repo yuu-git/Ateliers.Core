@@ -1,15 +1,24 @@
-﻿using Ateliers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Ateliers
+namespace Ateliers.Core.ValueObjects
 {
     /// <summary>
-    /// 日付情報
+    /// 日付情報 - 値オブジェクト
     /// </summary>
-    public class DayInfo
+    /// <remarks>
+    /// <para> 概要: <see cref="System.DateTime.Date"/> より詳細な日付情報を示します。 </para>
+    /// <para> 利点として、この値オブジェクトは複数の日付をビット値で持つことができ、タイマー処理の判定条件やデータの保存に適しています。 </para>
+    /// <para> 例えば『1日と5日だけ処理したい』という場合 1 + 16 = 17 の int値でデータを保持することができ <see cref="DayInfo.Flag"/> と <see cref="Enum.HasFlag(Enum)"/> メソッドを使用して判定を実行できます。 </para>
+    /// <para> （ただし <see cref="Enum.HasFlag(Enum)"/> は .Net のバージョンによっては処理速度の問題があるため注意して下さい） </para>
+    /// </remarks>
+    /// <example>
+    /// 値オブジェクトの取得は、静的ファクトリメソッドを使用して下さい。 
+    /// 　DayInfo.GetDay(15);   … 15日を取得します。
+    /// 　DayInfo.GetDays(new[] { 1, 3, 5 }); … 1日と3日と5日を取得します。
+    /// </example>
+    public class DayInfo : ValueObjectBase<DayInfo>
     {
         /*--- * structers -------------------------------------------------------------------------------------------------------------------------*/
 
@@ -50,7 +59,6 @@ namespace Ateliers
         /// </summary>
         public string JpnName { get; private set; }
 
-
         /*--- Method: public ----------------------------------------------------------------------------------------------------------------------*/
 
         /// <summary>
@@ -67,7 +75,7 @@ namespace Ateliers
         /// <exception cref="ArgumentOutOfRangeException"> 1~31 以外の数値は指定できません。 </exception>
         public static DayInfo GetDay(int day)
         {
-            if (day > 31 || day < 1)
+            if (day <= 0 || day >= 32)
                 throw new ArgumentOutOfRangeException(nameof(day));
 
             return Days[day];
@@ -76,32 +84,11 @@ namespace Ateliers
         /// <summary>
         /// 引数指定の日付情報を取得します。
         /// </summary>
-        /// <param name="days">  </param>
+        /// <param name="days"> 取得する日付を指定します。 </param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentNullException"> 取得対象日付のコレクションは必須です。 </exception>
+        /// <exception cref="ArgumentOutOfRangeException"> 1~31 以外の数値は指定できません。 </exception>
         public static IEnumerable<DayInfo> GetDays(IEnumerable<int> days)
-        {
-            if (days is null) 
-                throw new ArgumentNullException(nameof(days));
-
-            if (!days.Any())
-                return Enumerable.Empty<DayInfo>();
-            
-            if (days.Where(day => day > 0 && day < 32).Any())
-                throw new ArgumentOutOfRangeException(nameof(days));
-
-            return Days.Where(x => days.Contains(x.Key)).Select(x => x.Value).ToList();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="days"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static IEnumerable<DayInfo> GetDays(params int[] days)
         {
             if (days is null)
                 throw new ArgumentNullException(nameof(days));
@@ -109,45 +96,53 @@ namespace Ateliers
             if (!days.Any())
                 return Enumerable.Empty<DayInfo>();
 
-            if (days.Where(day => day > 0 && day < 32).Any())
+            if (days.Any(day => day <= 0 || day >= 32))
                 throw new ArgumentOutOfRangeException(nameof(days));
 
-            return Days.Where(x => days.Contains(x.Key)).Select(x => x.Value).ToList();
+            return days.Select(x => Days[x]).ToList();
         }
 
         /// <summary>
-        /// ハッシュコードを取得します。
+        /// 引数指定の日付情報を取得します。
         /// </summary>
-        /// <returns> ハッシュコード数値 </returns>
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="days"> 取得する日付を指定します。 </param>
         /// <returns></returns>
-        public override bool Equals(object obj)
+        /// <exception cref="ArgumentNullException"> 取得対象日付のコレクションは必須です。 </exception>
+        /// <exception cref="ArgumentOutOfRangeException"> 1~31 以外の数値は指定できません。 </exception>
+        public static IEnumerable<DayInfo> GetDays(params int[] days)
         {
-            if (obj is DayInfo dayInfo)
-            {
-                return this.Value == dayInfo.Value;
-            }
-            else
-            {
-                return false;
-            }
+            if (days is null)
+                throw new ArgumentNullException(nameof(days));
+
+            if (days.Length is 0)
+                return Enumerable.Empty<DayInfo>();
+
+            if (days.Any(day => day <= 0 || day >= 32))
+                throw new ArgumentOutOfRangeException(nameof(days));
+
+            return days.Select(x => Days[x]).ToList();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
-            return $"{this}";
+            return $"{Value}";
+        }
+
+        /// <inheritdoc/>
+        protected override bool EqualsCore(DayInfo other)
+        {
+            return Value == other.Value
+                && Name == other.Name
+                && FullName == other.FullName
+                && Flag == other.Flag
+                && JpnName == other.JpnName;
+        }
+
+        /// <inheritdoc/>
+        protected override int GetHashCodeCore()
+        {
+            return Value.GetHashCode() ^ Name.GetHashCode() ^ FullName.GetHashCode() ^ Flag.GetHashCode() ^ JpnName.GetHashCode();
         }
 
         /*--- Method: internal --------------------------------------------------------------------------------------------------------------------*/
