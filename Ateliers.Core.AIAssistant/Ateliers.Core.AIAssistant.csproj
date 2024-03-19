@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Ateliers.Core</RootNamespace>
+    <Company>ateliers.dev</Company>
+    <Authors>Yuu.Konno</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NeutralLanguage>ja-JP</NeutralLanguage>
+    <RepositoryType>GitHub (Public)</RepositoryType>
+    <Copyright>Copyright 2024, Yuu.Konno</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/yuu-git/Ateliers.Core</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="GitHubCopilot\TestGenGuidelines\TestCreationGuidelines_01.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="GitHubCopilot\TestGenGuidelines\TestCreationGuidelines_01.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="GitHubCopilot\CodeGenGuidelines\" />
+    <Folder Include="GitHubCopilot\PromptGuidelines\" />
+    <Folder Include="GitHubCopilot\PromptManuals\" />
+    <Folder Include="GitHubCopilot\TestReviewGuidelines\" />
+  </ItemGroup>
+
+</Project>
