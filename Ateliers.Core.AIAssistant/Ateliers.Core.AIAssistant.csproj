@@ -14,11 +14,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="GitHubCopilot\TestGenGuidelines\TestCreationGuidelines_01.txt" />
+    <None Remove="GitHubCopilot\TestGenGuidelines\TestCreationGuidelines_01.md" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="GitHubCopilot\TestGenGuidelines\TestCreationGuidelines_01.txt" />
+    <Content Include="GitHubCopilot\TestGenGuidelines\TestCreationGuidelines_01.md" />
   </ItemGroup>
 
   <ItemGroup>
