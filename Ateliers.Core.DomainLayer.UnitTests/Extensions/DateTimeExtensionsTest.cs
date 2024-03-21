@@ -1,7 +1,6 @@
-using System;
 using Xunit;
 
-namespace Ateliers.UnitTest.Extensions
+namespace Ateliers.UnitTests
 {
     public class DateTimeExtensionsTest
     {
