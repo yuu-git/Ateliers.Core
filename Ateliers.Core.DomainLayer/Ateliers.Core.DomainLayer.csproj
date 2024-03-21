@@ -19,12 +19,12 @@
 
   <ItemGroup>
     <PackageReference Include="NLog" Version="5.2.8" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Aggregates\" />
-    <Folder Include="Entities\" />
   </ItemGroup>
 
 
