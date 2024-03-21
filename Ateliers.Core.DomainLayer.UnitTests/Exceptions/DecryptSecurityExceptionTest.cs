@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace Ateliers.UnitTest.Exceptions
+namespace Ateliers.UnitTests
 {
     public class DecryptSecurityExceptionTest
     {

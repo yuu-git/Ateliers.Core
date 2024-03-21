@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using Xunit;
 
-namespace Ateliers.UnitTest.Services
+namespace Ateliers.UnitTests
 {
     public class EncryptServiceTest
     {

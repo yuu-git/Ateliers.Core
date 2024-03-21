@@ -13,19 +13,19 @@
     <RepositoryUrl>https://github.com/yuu-git/Ateliers.Core</RepositoryUrl>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="NLog" Version="5.2.8" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="System.Text.Json" Version="8.0.3" />
+    <None Remove="GitHubCopilot\TestGenGuidelines\TestCreationGuidelines_01.md" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Aggregates\" />
+    <Content Include="GitHubCopilot\TestGenGuidelines\TestCreationGuidelines_01.md" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="GitHubCopilot\CodeGenGuidelines\" />
+    <Folder Include="GitHubCopilot\PromptGuidelines\" />
+    <Folder Include="GitHubCopilot\PromptManuals\" />
+    <Folder Include="GitHubCopilot\TestReviewGuidelines\" />
+  </ItemGroup>
 
 </Project>

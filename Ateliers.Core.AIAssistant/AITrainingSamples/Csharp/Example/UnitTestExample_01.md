@@ -1,76 +1,274 @@
+﻿*****************************************************
+  AITrainingSamples - UnitTestExample - 01
+*****************************************************
+
+このサンプルは GitHub Copilot が C# のコードを記載する際の学習用サンプルを示しています。
+ここでは、単体テストのサンプルを示しています。
+
+以下は、実装内容です。
+
+```csharp
+using System;
+
+namespace Ateliers
+{
+    /// <summary>
+    /// 日時型(<see cref="DateTime"/>) 拡張メソッド
+    /// </summary>
+    public static class DateTimeExtensions
+    {
+        /*--- Property/Field Definitions ----------------------------------------------------------------------------------------------------------*/
+        /*--- Method: public ----------------------------------------------------------------------------------------------------------------------*/
+
+        /// <summary>
+        /// 翌日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 翌日の日付を返します。時刻は00:00に設定します。 日付が <see cref="DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetNextDay(this DateTime self) =>
+            self.Date == DateTime.MaxValue.Date ? self : self.AddDays(1).Date;
+
+        /// <summary>
+        /// 次週の月曜日を取得します。引数の日付が既に月曜日の場合、翌週の月曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 次週の月曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetNextMonday(this DateTime self) =>
+            self == DateTime.MaxValue ? self : GetNextWeekOfDate(self, DayOfWeek.Monday);
+
+        /// <summary>
+        /// 次週の火曜日を取得します。引数の日付が既に火曜日の場合、翌週の火曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 次週の火曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetNextTuesday(this DateTime self) =>
+            self == DateTime.MaxValue ? self : GetNextWeekOfDate(self, DayOfWeek.Tuesday);
+
+        /// <summary>
+        /// 次週の水曜日を取得します。引数の日付が既に水曜日の場合、翌週の水曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 次週の水曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetNextWednesday(this DateTime self) =>
+            self == DateTime.MaxValue ? self : GetNextWeekOfDate(self, DayOfWeek.Wednesday);
+
+        /// <summary>
+        /// 次週の木曜日を取得します。引数の日付が既に木曜日の場合、翌週の木曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 次週の木曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetNextThursday(this DateTime self) =>
+            self == DateTime.MaxValue ? self : GetNextWeekOfDate(self, DayOfWeek.Thursday);
+
+        /// <summary>
+        /// 次週の金曜日を取得します。引数の日付が既に金曜日の場合、翌週の金曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 次週の金曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetNextFriday(this DateTime self) =>
+            self == DateTime.MaxValue ? self : GetNextWeekOfDate(self, DayOfWeek.Friday);
+
+        /// <summary>
+        /// 次週の土曜日を取得します。引数の日付が既に土曜日の場合、翌週の土曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 次週の土曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetNextSaturday(this DateTime self) =>
+            self == DateTime.MaxValue ? self : GetNextWeekOfDate(self, DayOfWeek.Saturday);
+
+        /// <summary>
+        /// 次週の日曜日を取得します。引数の日付が既に日曜日の場合、翌週の日曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 次週の日曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MaxValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetNextSunday(this DateTime self) =>
+            self == DateTime.MaxValue ? self : GetNextWeekOfDate(self, DayOfWeek.Sunday);
+
+        /// <summary>
+        /// 前日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 前日の日付を返します。 日付が <see cref="DateTime.MinValue"/> の場合、そのまま返します。時刻は00:00に設定します。 </returns>
+        public static DateTime GetPreviousDay(this DateTime self) =>
+            self.Date == DateTime.MinValue.Date ? self : self.AddDays(-1).Date;
+
+        /// <summary>
+        /// 前週の月曜日を取得します。引数の日付が既に月曜日の場合、翌週の月曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 前週の月曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetPreviousMonday(this DateTime self) =>
+            self == DateTime.MinValue ? self : GetPreviousWeekOfDate(self, DayOfWeek.Monday);
+
+        /// <summary>
+        /// 前週の火曜日を取得します。引数の日付が既に火曜日の場合、翌週の火曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 前週の火曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetPreviousTuesday(this DateTime self) =>
+            self == DateTime.MinValue ? self : GetPreviousWeekOfDate(self, DayOfWeek.Tuesday);
+
+        /// <summary>
+        /// 前週の水曜日を取得します。引数の日付が既に水曜日の場合、翌週の水曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 前週の水曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetPreviousWednesday(this DateTime self) =>
+            self == DateTime.MinValue ? self : GetPreviousWeekOfDate(self, DayOfWeek.Wednesday);
+
+        /// <summary>
+        /// 前週の木曜日を取得します。引数の日付が既に木曜日の場合、翌週の木曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 前週の木曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetPreviousThursday(this DateTime self) =>
+            self == DateTime.MinValue ? self : GetPreviousWeekOfDate(self, DayOfWeek.Thursday);
+
+        /// <summary>
+        /// 前週の金曜日を取得します。引数の日付が既に金曜日の場合、翌週の金曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 前週の金曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetPreviousFriday(this DateTime self) =>
+            self == DateTime.MinValue ? self : GetPreviousWeekOfDate(self, DayOfWeek.Friday);
+
+        /// <summary>
+        /// 前週の土曜日を取得します。引数の日付が既に土曜日の場合、翌週の土曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 前週の土曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetPreviousSaturday(this DateTime self) =>
+            self == DateTime.MinValue ? self : GetPreviousWeekOfDate(self, DayOfWeek.Saturday);
+
+        /// <summary>
+        /// 前週の日曜日を取得します。引数の日付が既に日曜日の場合、翌週の日曜日を取得します。
+        /// </summary>
+        /// <param name="self"> 判定する基準となる日時（自身） </param>
+        /// <returns> 前週の日曜日の日付を返します。時刻は00:00に設定します。日付が <see cref="DateTime.MinValue"/> の場合、そのまま返します。 </returns>
+        public static DateTime GetPreviousSunday(this DateTime self) =>
+            self == DateTime.MinValue ? self : GetPreviousWeekOfDate(self, DayOfWeek.Sunday);
+
+        /*--- Method: internal --------------------------------------------------------------------------------------------------------------------*/
+        /*--- Method: private ---------------------------------------------------------------------------------------------------------------------*/
+
+        /// <summary>
+        /// 翌週の指定された曜日に該当する日付を取得します。
+        /// </summary>
+        /// <param name="baseDate"> 基準となる日付を指定します。 </param>
+        /// <param name="targetDayOfWeek"> 取得する対象の曜日を指定します。 </param>
+        /// <returns> 結果の日付を返します。 時刻は00:00に設定します。 </returns>
+        private static DateTime GetNextWeekOfDate(DateTime baseDate, DayOfWeek targetDayOfWeek)
+        {
+            var day = baseDate.GetNextDay();
+
+            while (true)
+            {
+                if (day.DayOfWeek == targetDayOfWeek)
+                    return day;
+                else
+                    day = day.GetNextDay();
+            }
+        }
+
+        /// <summary>
+        /// 前週の指定された曜日に該当する日付を取得します。
+        /// </summary>
+        /// <param name="baseDate"> 基準となる日付を指定します。 </param>
+        /// <param name="targetDayOfWeek"> 取得する対象の曜日を指定します。 </param>
+        /// <returns> 結果の日付を返します。 時刻は00:00に設定します。 </returns>
+        private static DateTime GetPreviousWeekOfDate(DateTime baseDate, DayOfWeek targetDayOfWeek)
+        {
+            var day = baseDate.GetPreviousDay();
+
+            while (true)
+            {
+                if (day.DayOfWeek == targetDayOfWeek)
+                    return day;
+                else
+                    day = day.GetPreviousDay();
+            }
+        }
+    }
+}
+
+```
+
+以下は、実装に対するテストコードです。
+
+```csharp
 using Xunit;
 
 namespace Ateliers.UnitTests
 {
     public class DateTimeExtensionsTest
     {
-        public const string TESTNAME_001_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextDay) + "_" + "Now�ɐ��������Z����";
-        public const string TESTNAME_001_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextDay) + "_" + "�ő�l�ɂ͉��Z���Ȃ�";
-        public const string TESTNAME_001_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextDay) + "_" + "�������������擾�ł���";
-        public const string TESTNAME_001_00400 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextDay) + "_" + "�����𐳂����擾�ł���";
-        public const string TESTNAME_001_00500 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextDay) + "_" + "���N�𐳂����擾�ł���";
+        public const string TESTNAME_001_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextDay) + "_" + "Nowに正しく加算する";
+        public const string TESTNAME_001_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextDay) + "_" + "最大値には加算しない";
+        public const string TESTNAME_001_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextDay) + "_" + "翌日が正しく取得できる";
+        public const string TESTNAME_001_00400 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextDay) + "_" + "翌月を正しく取得できる";
+        public const string TESTNAME_001_00500 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextDay) + "_" + "翌年を正しく取得できる";
 
-        public const string TESTNAME_002_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousDay) + "_" + "Now�ɐ��������Z����";
-        public const string TESTNAME_002_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousDay) + "_" + "�ŏ��l�ɂ͌��Z���Ȃ�";
-        public const string TESTNAME_002_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousDay) + "_" + "�O�����������擾�ł���";
-        public const string TESTNAME_002_00400 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousDay) + "_" + "�O���𐳂����擾�ł���";
-        public const string TESTNAME_002_00500 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousDay) + "_" + "�O�N�𐳂����擾�ł���";
+        public const string TESTNAME_002_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousDay) + "_" + "Nowに正しく減算する";
+        public const string TESTNAME_002_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousDay) + "_" + "最小値には減算しない";
+        public const string TESTNAME_002_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousDay) + "_" + "前日が正しく取得できる";
+        public const string TESTNAME_002_00400 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousDay) + "_" + "前月を正しく取得できる";
+        public const string TESTNAME_002_00500 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousDay) + "_" + "前年を正しく取得できる";
 
-        public const string TESTNAME_003_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextMonday) + "_" + "���������T�̌��j�����擾�ł���";
-        public const string TESTNAME_003_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextMonday) + "_" + "�ő�l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_003_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextMonday) + "_" + "���Ɍ��j���̏ꍇ�͗��T�̌��j�����擾����";
+        public const string TESTNAME_003_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextMonday) + "_" + "正しく次週の月曜日を取得できる";
+        public const string TESTNAME_003_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextMonday) + "_" + "最大値の場合はそのまま返る";
+        public const string TESTNAME_003_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextMonday) + "_" + "既に月曜日の場合は翌週の月曜日を取得する";
 
-        public const string TESTNAME_004_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextTuesday) + "_" + "���������T�̉Ηj�����擾�ł���";
-        public const string TESTNAME_004_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextTuesday) + "_" + "�ő�l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_004_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextTuesday) + "_" + "���ɉΗj���̏ꍇ�͗��T�̉Ηj�����擾����";
+        public const string TESTNAME_004_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextTuesday) + "_" + "正しく次週の火曜日を取得できる";
+        public const string TESTNAME_004_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextTuesday) + "_" + "最大値の場合はそのまま返る";
+        public const string TESTNAME_004_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextTuesday) + "_" + "既に火曜日の場合は翌週の火曜日を取得する";
 
-        public const string TESTNAME_005_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextWednesday) + "_" + "���������T�̐��j�����擾�ł���";
-        public const string TESTNAME_005_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextWednesday) + "_" + "�ő�l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_005_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextWednesday) + "_" + "���ɐ��j���̏ꍇ�͗��T�̐��j�����擾����";
+        public const string TESTNAME_005_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextWednesday) + "_" + "正しく次週の水曜日を取得できる";
+        public const string TESTNAME_005_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextWednesday) + "_" + "最大値の場合はそのまま返る";
+        public const string TESTNAME_005_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextWednesday) + "_" + "既に水曜日の場合は翌週の水曜日を取得する";
 
-        public const string TESTNAME_006_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextThursday) + "_" + "���������T�̖ؗj�����擾�ł���";
-        public const string TESTNAME_006_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextThursday) + "_" + "�ő�l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_006_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextThursday) + "_" + "���ɖؗj���̏ꍇ�͗��T�̖ؗj�����擾����";
+        public const string TESTNAME_006_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextThursday) + "_" + "正しく次週の木曜日を取得できる";
+        public const string TESTNAME_006_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextThursday) + "_" + "最大値の場合はそのまま返る";
+        public const string TESTNAME_006_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextThursday) + "_" + "既に木曜日の場合は翌週の木曜日を取得する";
 
-        public const string TESTNAME_007_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextFriday) + "_" + "���������T�̋��j�����擾�ł���";
-        public const string TESTNAME_007_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextFriday) + "_" + "�ő�l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_007_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextFriday) + "_" + "���ɋ��j���̏ꍇ�͗��T�̋��j�����擾����";
+        public const string TESTNAME_007_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextFriday) + "_" + "正しく次週の金曜日を取得できる";
+        public const string TESTNAME_007_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextFriday) + "_" + "最大値の場合はそのまま返る";
+        public const string TESTNAME_007_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextFriday) + "_" + "既に金曜日の場合は翌週の金曜日を取得する";
 
-        public const string TESTNAME_008_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSaturday) + "_" + "���������T�̓y�j�����擾�ł���";
-        public const string TESTNAME_008_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSaturday) + "_" + "�ő�l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_008_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSaturday) + "_" + "���ɓy�j���̏ꍇ�͗��T�̓y�j�����擾����";
+        public const string TESTNAME_008_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSaturday) + "_" + "正しく次週の土曜日を取得できる";
+        public const string TESTNAME_008_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSaturday) + "_" + "最大値の場合はそのまま返る";
+        public const string TESTNAME_008_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSaturday) + "_" + "既に土曜日の場合は翌週の土曜日を取得する";
 
-        public const string TESTNAME_009_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSunday) + "_" + "���������T�̓��j�����擾�ł���";
-        public const string TESTNAME_009_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSunday) + "_" + "�ő�l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_009_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSunday) + "_" + "���ɓ��j���̏ꍇ�͗��T�̓��j�����擾����";
+        public const string TESTNAME_009_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSunday) + "_" + "正しく次週の日曜日を取得できる";
+        public const string TESTNAME_009_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSunday) + "_" + "最大値の場合はそのまま返る";
+        public const string TESTNAME_009_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetNextSunday) + "_" + "既に日曜日の場合は翌週の日曜日を取得する";
 
-        public const string TESTNAME_010_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousMonday) + "_" + "�������O�T�̌��j�����擾�ł���";
-        public const string TESTNAME_010_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousMonday) + "_" + "�ŏ��l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_010_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousMonday) + "_" + "���Ɍ��j���̏ꍇ�͗��T�̌��j�����擾����";
+        public const string TESTNAME_010_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousMonday) + "_" + "正しく前週の月曜日を取得できる";
+        public const string TESTNAME_010_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousMonday) + "_" + "最小値の場合はそのまま返る";
+        public const string TESTNAME_010_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousMonday) + "_" + "既に月曜日の場合は翌週の月曜日を取得する";
 
-        public const string TESTNAME_011_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousTuesday) + "_" + "�������O�T�̉Ηj�����擾�ł���";
-        public const string TESTNAME_011_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousTuesday) + "_" + "�ŏ��l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_011_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousTuesday) + "_" + "���ɉΗj���̏ꍇ�͗��T�̉Ηj�����擾����";
+        public const string TESTNAME_011_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousTuesday) + "_" + "正しく前週の火曜日を取得できる";
+        public const string TESTNAME_011_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousTuesday) + "_" + "最小値の場合はそのまま返る";
+        public const string TESTNAME_011_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousTuesday) + "_" + "既に火曜日の場合は翌週の火曜日を取得する";
 
-        public const string TESTNAME_012_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousWednesday) + "_" + "�������O�T�̐��j�����擾�ł���";
-        public const string TESTNAME_012_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousWednesday) + "_" + "�ŏ��l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_012_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousWednesday) + "_" + "���ɐ��j���̏ꍇ�͗��T�̐��j�����擾����";
+        public const string TESTNAME_012_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousWednesday) + "_" + "正しく前週の水曜日を取得できる";
+        public const string TESTNAME_012_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousWednesday) + "_" + "最小値の場合はそのまま返る";
+        public const string TESTNAME_012_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousWednesday) + "_" + "既に水曜日の場合は翌週の水曜日を取得する";
 
-        public const string TESTNAME_013_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousThursday) + "_" + "�������O�T�̖ؗj�����擾�ł���";
-        public const string TESTNAME_013_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousThursday) + "_" + "�ŏ��l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_013_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousThursday) + "_" + "���ɖؗj���̏ꍇ�͗��T�̖ؗj�����擾����";
+        public const string TESTNAME_013_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousThursday) + "_" + "正しく前週の木曜日を取得できる";
+        public const string TESTNAME_013_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousThursday) + "_" + "最小値の場合はそのまま返る";
+        public const string TESTNAME_013_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousThursday) + "_" + "既に木曜日の場合は翌週の木曜日を取得する";
 
-        public const string TESTNAME_014_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousFriday) + "_" + "�������O�T�̋��j�����擾�ł���";
-        public const string TESTNAME_014_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousFriday) + "_" + "�ŏ��l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_014_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousFriday) + "_" + "���ɋ��j���̏ꍇ�͗��T�̋��j�����擾����";
+        public const string TESTNAME_014_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousFriday) + "_" + "正しく前週の金曜日を取得できる";
+        public const string TESTNAME_014_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousFriday) + "_" + "最小値の場合はそのまま返る";
+        public const string TESTNAME_014_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousFriday) + "_" + "既に金曜日の場合は翌週の金曜日を取得する";
 
-        public const string TESTNAME_015_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSaturday) + "_" + "�������O�T�̓y�j�����擾�ł���";
-        public const string TESTNAME_015_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSaturday) + "_" + "�ŏ��l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_015_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSaturday) + "_" + "���ɓy�j���̏ꍇ�͗��T�̓y�j�����擾����";
+        public const string TESTNAME_015_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSaturday) + "_" + "正しく前週の土曜日を取得できる";
+        public const string TESTNAME_015_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSaturday) + "_" + "最小値の場合はそのまま返る";
+        public const string TESTNAME_015_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSaturday) + "_" + "既に土曜日の場合は翌週の土曜日を取得する";
 
-        public const string TESTNAME_016_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSunday) + "_" + "�������O�T�̓��j�����擾�ł���";
-        public const string TESTNAME_016_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSunday) + "_" + "�ŏ��l�̏ꍇ�͂��̂܂ܕԂ�";
-        public const string TESTNAME_016_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSunday) + "_" + "���ɓ��j���̏ꍇ�͗��T�̓��j�����擾����";
+        public const string TESTNAME_016_00100 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSunday) + "_" + "正しく前週の日曜日を取得できる";
+        public const string TESTNAME_016_00200 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSunday) + "_" + "最小値の場合はそのまま返る";
+        public const string TESTNAME_016_00300 = nameof(DateTimeExtensions) + "." + nameof(DateTimeExtensions.GetPreviousSunday) + "_" + "既に日曜日の場合は翌週の日曜日を取得する";
 
 
         [Fact(DisplayName = TESTNAME_001_00100)]
@@ -776,10 +974,10 @@ namespace Ateliers.UnitTests
         }
 
         /// <summary>
-        /// ���t�̌��ʌ��؂����s���܂�
+        /// 日付の結果検証を実行します
         /// </summary>
-        /// <param name="testResult"> �e�X�g�œ������ʂ̓��t���w�肵�܂� </param>
-        /// <param name="assumedResult"> �z�肷�錋�ʂ̓��t���w�肵�܂� </param>
+        /// <param name="testResult"> テストで得た結果の日付を指定します </param>
+        /// <param name="assumedResult"> 想定する結果の日付を指定します </param>
         private void ResultDateVerification(DateTime testResult, DateTime assumedResult)
         {
             testResult.Year.Is(assumedResult.Year);
@@ -793,3 +991,5 @@ namespace Ateliers.UnitTests
         }
     }
 }
+
+```
