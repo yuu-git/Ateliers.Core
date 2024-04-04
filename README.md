@@ -1,73 +1,116 @@
-## ライセンス
+
+## 1. ライセンス
 
 このプロジェクトは [MIT ライセンス](LICENSE) の下で提供されています。  
 詳細については、[LICENSE](LICENSE) ファイルをご覧ください。  
   
 (This project is licensed under the terms of the [MIT License](LICENSE). See the [LICENSE](LICENSE) file for details. )
 
-## リポジトリの概要
+## 2. リポジトリについて
 
 C# による汎用機能ライブラリです。  
 ateliers.dev のプロジェクト全てに適用する中核です。
 
-## 設計手法
+## 3. 動作確認環境（開発環境）
+
+以下の環境で開発作業をしています。
+
+```
+【2024/04/05】
+OS: Windows 11
+
+IDE: Visual Studio Community 2022 - Version 17.9.3 
++ GitHub Copilot - 1.156.0.0
+
+IDE: Visual Studio Code - Version 1.87.2
++ GitHub Copilot - 1.175.0
+```
+
+## 4. 設計手法
 
 ドメイン駆動設計 (DDD) を元に C# で製造しています。  
 基本的な設計はMicrosoft社のガイドラインを元にしています。  
 https://learn.microsoft.com/ja-jp/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/ddd-oriented-microservice
 
-## 動作環境 (開発者作業環境)
+## 5. プロジェクト構成
 
-### 1. ソフトウェア
-+ OS: Windows 11
-+ IDE: Visual Studio Community 2022 - Version 17.9.3 
-+ IDE: Visual Studio Code - Version 1.87.2
+### 5.1. メインプロジェクト
+
+DDDの概念に基づき、以下の3つから構成されます。  
+ライブラリであるため プレゼンテーションレイヤーは存在しません。
+
+#### 概要図
+
+![ドメイン駆動概要図](.Assets/Images/DomainDrivenDesign.drawio.png)
+
+---
+
+#### Ateliers.Core.ApplicationLayer プロジェクト:  
+`.Net Standard 2.0` (2024/04/01 時点)  
+
+*【実装項目】*
+- アプリケーションサービス
+- アプリケーションイベント
+- ユースケース
+- ファクトリ
   
-### 2. IDE インストール済み拡張機能
-+ [VS] GitHub Copilot - 1.156.0.0
-+ [VS Code] GitHub Copilot - 1.175.0
- 
-## プロジェクト構成
-
-基幹ライブラリであるため プレゼンテーションレイヤーは存在しません。
-
-### 1. Ateliers.Core.ApplicationLayer プロジェクト:  
-
-Framework: .Net Standard 2.0 (2024/03 ～ 現在)  
-  
-DDDにおける『ユースケース』『アプリケーションサービス』『ファクトリ』を実装。  
-DomainLayer および InfrastructureLayer を参照する。  
 ※ 汎用機能処理であるため、おそらく『ユースケース』は要件がない…かな。  
-
-### 2. Ateliers.Core.DomainLayer プロジェクト:  
-
-Framework: .Net Standard 2.0 (2024/03 ～ 現在)  
   
-DDDにおける『ドメインサービス』『集約』『エンティティ』『値オブジェクト』を実装。  
+*【参照依存】*
+- DomainLayer
+- InfrastructureLayer
 
-### 3. Ateliers.Core.InfrastructureLayer プロジェクト:  
+---
 
-Framework: .Net Standard 2.0 (2024/03 ～ 現在)  
-  
-DDDにおける『インフラストラクチャサービス』『リポジトリ』を実装。   
-DomainLayer を参照する。  
+#### Ateliers.Core.DomainLayer プロジェクト:  
+`.Net Standard 2.0` (2024/04/01 時点)    
 
-### 4. Ateliers.Core.AIAssistant プロジェクト：
+*【実装項目】*
+- ドメインサービス
+- ドメインイベント
+- 集約
+- エンティティ
+- 値オブジェクト
 
-Framework: .Net Standard 2.0 (2024/03 ～ 現在)  
-  
-主に GitHub Copilot の利用時に、学習コードや生成方法を格納したプロジェクト。  
-指示や規約がメインとなり、コードベースではなくテキストベース (`*.md`) となっている。  
-そのため DDD に対する参照は無し。
+---
 
-### 5. Ateliers.Core.TestHelper プロジェクト：
+#### Ateliers.Core.InfrastructureLayer プロジェクト:  
+`.Net Standard 2.0` (2024/04/01 時点)    
 
-Framework: .Net Standard 2.0 (2024/03 ～ 現在)  
-  
-テストコードを作成時に利用するライブラリで、テスト用の汎用機能を提供する。  
-汎用的な `Mock` やテストフォルダーの作成や削除の機能を提供する。
+*【実装項目】*
+- インフラストラクチャサービス
+- インフラストラクチャイベント
+- リポジトリ
 
-## サブモジュール化の手順
+*【参照依存】*
+- DomainLayer
+
+---
+
+### 5.2. サブプロジェクト
+
+DDDには関連しないサポートプロジェクトです。  
+生成AIの指示やテストサポートなどを提供します。
+
+---
+
+#### Ateliers.Core.AIAssistant プロジェクト:  
+`.Net Standard 2.0` (2024/04/01 時点)    
+
+AIによる自動生成に使用するガイドラインやサンプルコードを格納します。  
+C# によるプログラムではなく、ほとんどが `*.md` によるテキストベースのプロジェクトです。
+
+---
+
+#### AAteliers.Core.TestHelper プロジェクト:  
+`.Net Standard 2.0` (2024/04/01 時点)    
+
+テスト製造に使用する関数を格納したプロジェクトです。  
+単体テスト作成のサポート機能を提供します。
+
+---
+
+## 6. サブモジュール化の手順
 
 ### 1. コマンド
 
@@ -76,7 +119,7 @@ Framework: .Net Standard 2.0 (2024/03 ～ 現在)
 git submodule add https://github.com/yuu-git/Ateliers.Core.git submodules/Ateliers.Core
 ```
 
-### 2. ブランチについて
+### 2. サブモジュールのブランチについて
 
 基本的に master の使用を推奨。  
 開発中機能の使用は Develop ブランチを使用し、試験的機能を試す場合は、新しくブランチを作る。  
