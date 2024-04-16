@@ -66,7 +66,7 @@ namespace Ateliers
         /// <param name="entity"> 削除するエンティティを指定します。 </param>
         /// <param name="token"> (任意) 非同期処理のキャンセルトークンを指定します。 </param>
         /// <returns> 削除をデータベースに反映した件数を返します。 </returns>
-        Task<int> DeleteAsync(TEntity entity, CancellationToken token = default);
+        Task<int> DeleteAsync(TEntity entity, CancellationToken token = default); 
     }
 
     /// <summary>
