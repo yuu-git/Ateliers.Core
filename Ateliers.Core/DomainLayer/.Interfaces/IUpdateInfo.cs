@@ -22,14 +22,21 @@ namespace Ateliers
         /// <summary> 
         /// データ更新ユーザーの識別文字列を取得します。
         /// </summary>
-        string UpdateUserId { get; set; }
+        string UpdateUserId { get; }
 
         /// <summary> 
         /// データ更新日時を取得します。
         /// </summary>
-        DateTime? UpdateDateTime { get; set; }
+        DateTime? UpdateDateTime { get; }
 
         /*--- Method: public ----------------------------------------------------------------------------------------------------------------------*/
+
+        /// <summary>
+        /// エンティティの更新情報を設定します。
+        /// </summary>
+        /// <param name="entityOperator"> 更新操作者を指定します。 </param>
+        /// <param name="updateDateTime"> 更新日時を指定します。 </param>
+        void SetUpdateInfo(IOperator entityOperator, DateTime updateDateTime);
 
         /// <summary>
         /// エンティティの更新情報を設定します。

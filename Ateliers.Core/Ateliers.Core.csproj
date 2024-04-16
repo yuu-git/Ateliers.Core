@@ -1,0 +1,97 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Ateliers.Core</RootNamespace>
+    <Company>ateliers.dev</Company>
+    <Authors>Yuu.Konno</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NeutralLanguage>ja-JP</NeutralLanguage>
+    <RepositoryType>GitHub (Public)</RepositoryType>
+    <Copyright>Copyright 2024, Yuu.Konno</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/yuu-git/Ateliers.Core</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include=".Generic\Enums\AppRunType.cs" />
+    <Compile Include=".Generic\Enums\DataOperationMethod.cs" />
+    <Compile Include=".Generic\Enums\DataOperationResult.cs" />
+    <Compile Include=".Generic\Enums\DayFlags.cs" />
+    <Compile Include=".Generic\Enums\DisplayType.cs" />
+    <Compile Include=".Generic\Enums\EntityStatus.cs" />
+    <Compile Include=".Generic\Enums\EnvironmentType.cs" />
+    <Compile Include=".Generic\Enums\MatchCondition.cs" />
+    <Compile Include=".Generic\Enums\MonthFlags.cs" />
+    <Compile Include=".Generic\Enums\ProcResult.cs" />
+    <Compile Include=".Generic\Enums\Progress.cs" />
+    <Compile Include=".Generic\Enums\SortDirection.cs" />
+    <Compile Include=".Generic\Enums\TransactionStatus.cs" />
+    <Compile Include=".Generic\Enums\ValidationLevel.cs" />
+    <Compile Include=".Generic\Enums\WeekFlags.cs" />
+    <Compile Include=".Generic\Exceptions\DecryptSecurityException.cs" />
+    <Compile Include=".Generic\Exceptions\ValidationErrorException.cs" />
+    <Compile Include=".Generic\Exceptions\XmlLoadException.cs" />
+    <Compile Include=".Generic\Exceptions\XmlSaveException.cs" />
+    <Compile Include=".Generic\Extensions\DateTimeExtensions.cs" />
+    <Compile Include=".Generic\Extensions\IEnumerableExtensions.cs" />
+    <Compile Include=".Generic\Extensions\StringExtensions.cs" />
+    <Compile Include="ApplicationLayer\.Interfaces\IEncryptService.cs" />
+    <Compile Include="DomainLayer\.Interfaces\ICreateInfo.cs" />
+    <Compile Include="DomainLayer\.Interfaces\IDeleteInfo.cs" />
+    <Compile Include="DomainLayer\.Interfaces\IEntity.cs" />
+    <Compile Include="DomainLayer\.Interfaces\INLogConsoleTarget.cs" />
+    <Compile Include="DomainLayer\.Interfaces\INLogFileTargetSetting.cs" />
+    <Compile Include="DomainLayer\.Interfaces\INLogRule.cs" />
+    <Compile Include="DomainLayer\.Interfaces\IOperator.cs" />
+    <Compile Include="DomainLayer\.Interfaces\ITerm.cs" />
+    <Compile Include="DomainLayer\.Interfaces\IUpdateInfo.cs" />
+    <Compile Include="DomainLayer\.Interfaces\IValidationDetail.cs" />
+    <Compile Include="DomainLayer\.Interfaces\IValidationImplementation.cs" />
+    <Compile Include="InfrastructureLayer\.Interfaces\IDatabaseController.cs" />
+    <Compile Include="InfrastructureLayer\.Interfaces\IDataController.cs" />
+    <Compile Include="InfrastructureLayer\.Interfaces\IDbContextRepository.cs" />
+    <Compile Include="InfrastructureLayer\.Interfaces\IEntityFrameworkContext.cs" />
+    <Compile Include="InfrastructureLayer\.Interfaces\IFindOnlyDataController.cs" />
+    <Compile Include="InfrastructureLayer\.Interfaces\IRepository.cs" />
+    <Compile Include="InfrastructureLayer\.Interfaces\ITransaction.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="5.2.8" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ApplicationLayer\Events\" />
+    <Folder Include="DomainLayer\Aggregates\" />
+    <Folder Include="ApplicationLayer\Factories\" />
+    <Folder Include="ApplicationLayer\UseCases\" />
+    <Folder Include="DomainLayer\Events\" />
+    <Folder Include="InfrastructureLayer\Events\" />
+    <Folder Include="InfrastructureLayer\Services\" />
+    <Folder Include=".Generic\Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Ateriers.Core.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Ateriers.Core.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Ateriers.Core.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Ateriers.Core.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+
+</Project>

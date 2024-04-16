@@ -10,7 +10,7 @@ namespace Ateliers
     /// <remarks>
     /// 概要: エンティティの論理削除が行われた際の情報を保持していることを示す。
     /// </remarks>
-    public interface IDeleteInfo : IDeletedFlag
+    public interface IDeleteInfo
     {
         /*--- Property/Field Definitions ----------------------------------------------------------------------------------------------------------*/
 
@@ -24,12 +24,24 @@ namespace Ateliers
         /// </summary>
         string DeleteUserId { get; }
 
+        /// <summary>
+        /// 論理削除フラグを取得します。
+        /// </summary>
+        bool IsDeleted { get; }
+
         /// <summary> 
         /// データ削除日時を取得または設定します。
         /// </summary>
         DateTime? DeleteDateTime { get; }
 
         /*--- Method: public ----------------------------------------------------------------------------------------------------------------------*/
+
+        /// <summary>
+        /// エンティティの論理削除情報を設定します。
+        /// </summary>
+        /// <param name="entityOperator"> 削除操作者を指定します。 </param>
+        /// <param name="deleteDateTime"> 削除日時を指定します。 </param>
+        void SetDeleteInfo(IOperator entityOperator, DateTime deleteDateTime);
 
         /// <summary>
         /// エンティティの論理削除情報を設定します。

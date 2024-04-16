@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ateliers.Core.ApplicationLayer\Ateliers.Core.ApplicationLayer.csproj" />
+    <ProjectReference Include="..\Ateliers.Core\Ateliers.Core.csproj" />
   </ItemGroup>
 
 </Project>
