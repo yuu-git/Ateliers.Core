@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ateliers.Core.TestHelper", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ateliers.Core.TestHelper.UnitTests", "Ateliers.Core.TestHelper.UnitTests\Ateliers.Core.TestHelper.UnitTests.csproj", "{0C1F4A13-9796-4532-8C09-B96CAE134FFC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ateliers.Core.AIAssistant", "Ateliers.Core.AIAssistant\Ateliers.Core.AIAssistant.csproj", "{1BBB281C-E10B-4EA6-8376-94513DC2C214}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,10 +35,6 @@ Global
 		{0C1F4A13-9796-4532-8C09-B96CAE134FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C1F4A13-9796-4532-8C09-B96CAE134FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C1F4A13-9796-4532-8C09-B96CAE134FFC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1BBB281C-E10B-4EA6-8376-94513DC2C214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BBB281C-E10B-4EA6-8376-94513DC2C214}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BBB281C-E10B-4EA6-8376-94513DC2C214}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BBB281C-E10B-4EA6-8376-94513DC2C214}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
