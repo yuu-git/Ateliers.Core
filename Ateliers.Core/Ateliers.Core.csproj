@@ -47,18 +47,12 @@
     <Compile Include="DomainLayer\.Interfaces\INLogConsoleTarget.cs" />
     <Compile Include="DomainLayer\.Interfaces\INLogFileTargetSetting.cs" />
     <Compile Include="DomainLayer\.Interfaces\INLogRule.cs" />
+    <Compile Include="DomainLayer\.Interfaces\IObjectKey.cs" />
     <Compile Include="DomainLayer\.Interfaces\IOperator.cs" />
     <Compile Include="DomainLayer\.Interfaces\ITerm.cs" />
     <Compile Include="DomainLayer\.Interfaces\IUpdateInfo.cs" />
     <Compile Include="DomainLayer\.Interfaces\IValidationDetail.cs" />
     <Compile Include="DomainLayer\.Interfaces\IValidationImplementation.cs" />
-    <Compile Include="InfrastructureLayer\.Interfaces\IDatabaseController.cs" />
-    <Compile Include="InfrastructureLayer\.Interfaces\IDataController.cs" />
-    <Compile Include="InfrastructureLayer\.Interfaces\IDbContextRepository.cs" />
-    <Compile Include="InfrastructureLayer\.Interfaces\IEntityFrameworkContext.cs" />
-    <Compile Include="InfrastructureLayer\.Interfaces\IFindOnlyDataController.cs" />
-    <Compile Include="InfrastructureLayer\.Interfaces\IRepository.cs" />
-    <Compile Include="InfrastructureLayer\.Interfaces\ITransaction.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -73,8 +67,8 @@
     <Folder Include="ApplicationLayer\Factories\" />
     <Folder Include="ApplicationLayer\UseCases\" />
     <Folder Include="DomainLayer\Events\" />
+    <Folder Include="DomainLayer\Services\" />
     <Folder Include="InfrastructureLayer\Events\" />
-    <Folder Include="InfrastructureLayer\Services\" />
     <Folder Include=".Generic\Interfaces\" />
   </ItemGroup>
 

@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
-using System.Threading;
-using System.Xml.Linq;
 using System.Text.Json;
-using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Ateliers
