@@ -8,8 +8,11 @@ namespace Ateliers.Core.ValueObjects
     /// 値オブジェクト基底クラス
     /// </summary>
     /// <typeparam name="T"> 継承先の値オブジェクト型を指定します。 </typeparam>
-    public abstract class ValueObjectBase<T> where T : ValueObjectBase<T>
+    public abstract class ValueObjectBase<T> : IObjectKey
     {
+        /// <inheritdoc/>
+        public abstract string ObjectKey { get; }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {

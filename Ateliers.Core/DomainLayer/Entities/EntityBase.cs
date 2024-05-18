@@ -13,7 +13,7 @@ namespace Ateliers.Core.DomainLayer.Entities
     /// エンティティの基底クラス
     /// </summary>
     /// <typeparam name="T"> エンティティの型を指定します。 </typeparam> 
-    public abstract class EntityBase<T> : ICreateInfo, IUpdateInfo, IDeleteInfo
+    public abstract class EntityBase<T> : IObjectKey, ICreateInfo, IUpdateInfo, IDeleteInfo
         where T : class
     {
         /*--- * structers -------------------------------------------------------------------------------------------------------------------------*/
@@ -52,6 +52,11 @@ namespace Ateliers.Core.DomainLayer.Entities
         }
 
         /*--- Property/Field Definitions ----------------------------------------------------------------------------------------------------------*/
+
+        /// <summary>
+        /// エンティティの一意性を示すキーを取得します。
+        /// </summary>
+        public abstract string ObjectKey { get; }
 
         /// <inheritdoc/>
         [Required]
