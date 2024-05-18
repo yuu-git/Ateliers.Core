@@ -29,6 +29,9 @@ namespace Ateliers.Core.ValueObjects
 
         /*--- Property/Field Definitions ----------------------------------------------------------------------------------------------------------*/
 
+        /// <inheritdoc/>
+        public override string ObjectKey => $"{nameof(DayInfo)}-{FullName}";
+
         /// <summary>
         /// 日付の数値を取得します。
         /// </summary>
