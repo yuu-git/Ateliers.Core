@@ -1,0 +1,3 @@
+[submodule ".submodules/ateliers-ai-assistants"]
+	path = .submodules/ateliers-ai-assistants
+	url = https://github.com/yuu-git/ateliers-ai-assistants.git
