@@ -42,40 +42,7 @@ namespace Ateliers
         /// </summary>
         /// <param name="executeSql"> 実行するSQLを指定します。 </param>
         /// <param name="cancellationToken"> 非同期処理キャンセルトークンを指定します。 </param>
-        /// <param name="sqlParameters"> SQLで使用するパラメータオブジェクトを指定します。 </param>
-        /// <returns> SQLの実行結果を返します。 </returns>
-        Task<int> ExecuteSqlAsync(string executeSql, CancellationToken cancellationToken = default, params object[] sqlParameters);
-
-        /// <summary>
-        /// 非同期処理でデータベースに対してSQLを直接実行します。
-        /// </summary>
-        /// <param name="executeSql"> 実行するSQLを指定します。 </param>
-        /// <param name="cancellationToken"> 非同期処理キャンセルトークンを指定します。 </param>
         /// <returns> SQLの実行結果を返します。 </returns>
         Task<int> ExecuteSqlAsync(string executeSql, CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// データベースに対してSQLを直接実行します。
-        /// </summary>
-        /// <param name="executeSql"> 実行するSQLを指定します。 </param>
-        /// <param name="sqlParameters"> SQLで使用するパラメータオブジェクトを指定します。 </param>
-        /// <returns> SQLの実行結果を返します。 </returns>
-        int ExecuteSql(string executeSql, IEnumerable<object> sqlParameters);
-
-        /// <summary>
-        /// データベースに対してSQLを直接実行します。
-        /// </summary>
-        /// <param name="executeSql"> 実行するSQLを指定します。 </param>
-        /// <param name="sqlParameters"> SQLで使用するパラメータオブジェクトを指定します。 </param>
-        /// <returns> SQLの実行結果を返します。 </returns>
-        int ExecuteSql(string executeSql, params object[] sqlParameters);
-
-        /// <summary>
-        /// データベースに対してSQLを直接実行します。
-        /// </summary>
-        /// <param name="executeSql"> 実行するSQLを指定します。 </param>
-        /// <returns> SQLの実行結果を返します。 </returns>
-        int ExecuteSql(string executeSql);
-
     }
 }
