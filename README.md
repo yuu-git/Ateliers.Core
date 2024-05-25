@@ -19,7 +19,7 @@ ateliers.dev のプロジェクト全てに適用する中核です。
 【2024/04/05】
 OS: Windows 11
 
-IDE: Visual Studio Community 2022 - Version 17.9.3 
+IDE: Visual Studio Community 2022 - Version 17.10.0 
 + GitHub Copilot - 1.156.0.0
 
 IDE: Visual Studio Code - Version 1.87.2
@@ -53,8 +53,6 @@ DDDの概念に基づき、以下の3つから構成されます。
 - アプリケーションイベント
 - ユースケース
 - ファクトリ
-  
-※ 汎用機能処理であるため、おそらく『ユースケース』は要件がない…かな。  
   
 *【参照依存】*
 - DomainLayer
@@ -91,14 +89,6 @@ DDDの概念に基づき、以下の3つから構成されます。
 
 DDDには関連しないサポートプロジェクトです。  
 生成AIの指示やテストサポートなどを提供します。
-
----
-
-#### Ateliers.Core.AIAssistant プロジェクト:  
-`.Net Standard 2.0` (2024/04/01 時点)    
-
-AIによる自動生成に使用するガイドラインやサンプルコードを格納します。  
-C# によるプログラムではなく、ほとんどが `*.md` によるテキストベースのプロジェクトです。
 
 ---
 
